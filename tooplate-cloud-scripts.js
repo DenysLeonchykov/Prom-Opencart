@@ -186,3 +186,58 @@ https://www.tooplate.com/view/2142-cloud-sync
 
         // Rotate every 5 seconds
         setInterval(rotateBackgrounds, 5000);
+
+        // Reviews carousel (10 items, show 5)
+        const reviewsTrack = document.getElementById('reviewsTrack');
+        const reviewsPrev = document.getElementById('reviewsPrev');
+        const reviewsNext = document.getElementById('reviewsNext');
+        if (reviewsTrack && reviewsPrev && reviewsNext) {
+            const cards = Array.from(reviewsTrack.querySelectorAll('.review-card'));
+            const total = cards.length; // expect 10
+            let index = 0; // leftmost visible index
+            const visible = 5;
+
+            function setCardSizes() {
+                const trackStyle = getComputedStyle(reviewsTrack);
+                const gap = parseFloat(trackStyle.gap || 8);
+                const trackWidth = reviewsTrack.getBoundingClientRect().width;
+                const cardWidth = Math.floor((trackWidth - gap * (visible - 1)) / visible);
+
+                cards.forEach(card => {
+                    card.style.flexBasis = cardWidth + 'px';
+                    card.style.maxWidth = cardWidth + 'px';
+                });
+            }
+
+            function updateScroll() {
+                const left = cards.slice(0, index).reduce((sum, c) => sum + c.getBoundingClientRect().width + parseFloat(getComputedStyle(reviewsTrack).gap || 8), 0);
+                reviewsTrack.scrollTo({ left: Math.round(left), behavior: 'smooth' });
+            }
+
+            reviewsPrev.addEventListener('click', () => {
+                if (total <= visible) {
+                    index = 0;
+                } else if (index <= 0) {
+                    // wrap to end
+                    index = Math.max(0, total - visible);
+                } else {
+                    index = index - 1;
+                }
+                updateScroll();
+            });
+
+            reviewsNext.addEventListener('click', () => {
+                if (total <= visible) {
+                    index = 0;
+                } else if (index >= total - visible) {
+                    // wrap to start
+                    index = 0;
+                } else {
+                    index = index + 1;
+                }
+                updateScroll();
+            });
+
+            window.addEventListener('load', () => { setCardSizes(); updateScroll(); });
+            window.addEventListener('resize', () => { setCardSizes(); updateScroll(); });
+        }

@@ -59,6 +59,7 @@ https://www.tooplate.com/view/2142-cloud-sync
             font-size: 1.5rem;
             font-weight: bold;
             background: var(--gradient);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -223,7 +224,7 @@ https://www.tooplate.com/view/2142-cloud-sync
         }
 
         .hero-bg::after {
-            content: '';
+            content: '⭕⭕⭕';
             position: absolute;
             top: 0;
             left: 0;
@@ -260,6 +261,7 @@ https://www.tooplate.com/view/2142-cloud-sync
             font-size: 3.5rem;
             margin-bottom: 1rem;
             background: linear-gradient(to right, #ffffff, #94a3b8);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeInUp 0.8s ease-out;
@@ -373,6 +375,27 @@ https://www.tooplate.com/view/2142-cloud-sync
             font-weight: bold;
         }
 
+        /* Alternate checklist with crosses */
+        .feature-checklist1 {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-checklist1 li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-checklist1 li::before {
+            content: '✖';
+            position: absolute;
+            left: 0;
+            color: #ef4444; /* red */
+            font-weight: bold;
+        }
+
         /* Four Column Features */
         .features-four-col {
             display: grid;
@@ -452,13 +475,14 @@ https://www.tooplate.com/view/2142-cloud-sync
             background: rgba(99, 102, 241, 0.2);
             border-radius: 3px;
             outline: none;
+            appearance: none;
             -webkit-appearance: none;
             position: relative;
         }
 
         .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
             appearance: none;
+            -webkit-appearance: none;
             width: 20px;
             height: 20px;
             background: var(--primary);
@@ -537,10 +561,12 @@ https://www.tooplate.com/view/2142-cloud-sync
         }
 
         .plan-features li::before {
-            content: '✓ ';
+            content: '❌';
             color: var(--secondary);
             font-weight: bold;
         }
+
+    
 
         /* Animated Background */
         .floating-shapes {
@@ -662,6 +688,7 @@ https://www.tooplate.com/view/2142-cloud-sync
             font-size: 2.5rem;
             font-weight: bold;
             background: var(--gradient);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -1008,3 +1035,62 @@ https://www.tooplate.com/view/2142-cloud-sync
             }
             .feature-stats { justify-content: center; }
         }
+
+/* Reviews (prom-style) */
+.reviews {
+    padding: 3.5rem 2rem;
+    background: linear-gradient(180deg, rgba(30,41,59,0.6), rgba(15,23,42,0.6));
+}
+.reviews-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.reviews-header { text-align: center; margin-bottom: 2rem; }
+.reviews-header h2 { font-size: 2rem; margin-bottom: 0.25rem; }
+.reviews-subtitle { color: var(--text-secondary); }
+
+.reviews-carousel { display: flex; align-items: center; gap: 1rem; }
+.carousel-btn {
+    background: rgba(15,23,42,0.6);
+    color: var(--text);
+    border: 1px solid rgba(99,102,241,0.15);
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.carousel-track {
+    display: flex;
+    gap: 1rem;
+    overflow: hidden;
+    width: calc(100% - 120px); /* leaves room for controls */
+    scroll-behavior: smooth;
+}
+.review-card {
+    /* width will be set from JS to ensure exactly 5 visible */
+    flex: 0 0 auto;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border: 1px solid rgba(99,102,241,0.12);
+    padding: 1rem;
+    border-radius: 12px;
+    color: var(--text);
+}
+.prom-style { box-shadow: 0 6px 18px rgba(2,6,23,0.6); }
+.review-header { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; margin-bottom:0.5rem; }
+.review-author { font-weight:700; }
+.review-role { color: var(--text-secondary); font-size:0.85rem; }
+.review-rating { color: #ffd54a; margin-bottom:0.5rem; }
+.review-text { color: var(--text-secondary); margin-bottom:0.75rem; line-height:1.4; }
+.review-date { font-size:0.8rem; color: var(--text-secondary); }
+
+@media (max-width: 900px) {
+    .carousel-track { width: calc(100% - 100px); }
+    .review-card { min-width: calc((100% / 2) - 0.5rem); }
+}
+
+@media (max-width: 520px) {
+    .reviews-carousel { flex-direction: column; }
+    .carousel-btn { width:100%; }
+    .carousel-track { width: 100%; }
+    .review-card { min-width: 100%; }
+}
