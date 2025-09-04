@@ -35,6 +35,58 @@ https://www.tooplate.com/view/2142-cloud-sync
             overflow-x: hidden;
         }
 
+        /*New*/
+                    /* === INSERT: Accent Text Block === */
+            .insert-block {
+            margin: 2rem auto;
+            padding: 1.25rem 1.25rem;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(99,102,241,0.14), rgba(30,41,59,0.6));
+            border: 1px solid rgba(99,102,241,0.25);
+            color: var(--text);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            max-width: 980px;
+            }
+
+            .insert-block__head {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: .5rem;
+            }
+
+            .insert-block__icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--primary);
+            display: grid;
+            place-items: center;
+            flex: 0 0 36px;
+            box-shadow: 0 6px 20px rgba(99,102,241,0.45);
+            }
+
+            .insert-block__title {
+            font-size: 1.15rem;
+            line-height: 1.35;
+            font-weight: 700;
+            }
+
+            .insert-block__text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            }
+
+            /* Мобильчик */
+            @media (max-width: 640px) {
+            .insert-block { padding: 1rem; border-radius: 14px; }
+            .insert-block__title { font-size: 1.05rem; }
+            .insert-block__text { font-size: .98rem; }
+            }
+
+        
+        
         /* Navigation */
         nav {
             position: fixed;
@@ -462,6 +514,9 @@ https://www.tooplate.com/view/2142-cloud-sync
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
+
+
+        
 
         /* Pricing Section */
         .pricing {
