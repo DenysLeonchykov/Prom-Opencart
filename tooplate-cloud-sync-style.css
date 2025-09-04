@@ -83,7 +83,7 @@ https://www.tooplate.com/view/2142-cloud-sync
         .cta-button {
             background: var(--primary);
             color: white;
-            padding: 0.5rem 1.5rem;
+            padding: 0.75rem 1.25rem; /* unified button padding */
             border-radius: 0.5rem;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -164,6 +164,7 @@ https://www.tooplate.com/view/2142-cloud-sync
             margin-top: 1rem;
             width: 100%;
             text-align: center;
+            padding: 0.75rem 0.75rem; /* match desktop CTA padding */
         }
 
         @keyframes slideDown {
@@ -396,6 +397,34 @@ https://www.tooplate.com/view/2142-cloud-sync
             font-weight: bold;
         }
 
+        .consult-button {
+            display: inline-block;
+            margin-top: 0.75rem; /* slightly reduced vertical gap */
+            background: #10b981;
+            color: white;
+            padding: 0.75rem 1.25rem; /* consistent padding */
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .feature-card-large {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* center contents including buttons */
+        }
+
+        .order-button {
+            display: inline-block;
+            margin-top: 0.75rem; /* match consult button */
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.25rem; /* consistent padding */
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
         /* Four Column Features */
         .features-four-col {
             display: grid;
@@ -554,10 +583,11 @@ https://www.tooplate.com/view/2142-cloud-sync
             list-style: none;
             margin-bottom: 2rem;
         }
-
-        .plan-features li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
+        .pricing .plan-features li::before {
+            content: '✓';
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 0.25rem;
         }
 
         .plan-features li::before {
