@@ -1297,3 +1297,94 @@ https://www.tooplate.com/view/2142-cloud-sync
   .insert-block__text { font-size: .98rem; }
 }
 
+
+
+
+/* === REVIEWS CAROUSEL (3 per view) ================================ */
+.reviews {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.2rem 1rem;
+}
+.reviews__head { text-align: center; margin-bottom: 1rem; }
+.reviews__title { color: var(--text); font-size: 1.7rem; font-weight: 900; }
+.reviews__subtitle { color: var(--text-secondary); }
+
+.reviews__viewport { overflow: hidden; }
+.reviews__track {
+  display: flex;
+  gap: 16px;
+  transition: transform .35s ease;
+  will-change: transform;
+}
+
+/* карточка отзыва */
+.review {
+  flex: 0 0 calc((100% - 32px) / 3); /* 3 карточки видны одновременно (2 gap по 16px) */
+  background: transparent;;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: none;
+  color: var(--text);
+}
+.review__top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: .4rem;
+}
+.review__name { font-weight: 800; }
+.review__role { color: var(--text-secondary); font-size: .9rem; }
+.review__stars { color: #fbbf24; margin-bottom: .4rem; }
+.review__text {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  min-height: 4.2em;
+}
+.review__date { margin-top: .5rem; font-size: .85rem; color: var(--text-secondary); }
+
+/* стрелки */
+.reviews__nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 10px;
+  border: 1px solid rgba(148,163,184,0.25);
+  background: rgba(30,41,59,.85); color: #fff;
+  cursor: pointer;
+}
+.reviews__nav.prev { left: -52px; }
+.reviews__nav.next { right: -52px; }
+
+/* адаптив: 2 карточки / 1 карточка */
+@media (max-width: 1100px) {
+  .review { flex-basis: calc((100% - 16px) / 2); }
+  .reviews__nav.prev { left: 8px; } .reviews__nav.next { right: 8px; }
+}
+@media (max-width: 640px) {
+  .review { flex-basis: 100%; }
+}
+
+.reviews,
+.reviews__track,
+.reviews__viewport {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+
+.tpl5-card__title,
+.tpl5-card__demo {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;   /* максимум 4 строки */
+  overflow: hidden;
+  white-space: normal;     /* разрешаем перенос */
+  text-overflow: ellipsis; /* многоточие если длиннее */
+  line-height: 1.45;
+}
+
+
+.pricing-card.popular::before {
+  content: none !important;
+}
