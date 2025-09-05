@@ -1388,3 +1388,41 @@ https://www.tooplate.com/view/2142-cloud-sync
 .pricing-card.popular::before {
   content: none !important;
 }
+
+
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #6366f1;   /* 🔹 поменяй на цвет сайта */
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s, background 0.3s;
+  z-index: 1000;
+}
+
+.back-to-top svg {
+  width: 32px;  /* размер стрелки */
+  height: 32px;
+  fill: white;  /* белая стрелка */
+}
+
+.back-to-top.show {
+  opacity: 0.9;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  background: #1d5fb0;   /* тёмный оттенок цвета сайта */
+  transform: scale(1.1);
+  opacity: 1;
+}
+
