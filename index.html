@@ -530,46 +530,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="form-header">
                         <h3>Надішліть нам повідомлення</h3>
                     </div>
-                                                            <!-- Невидимый iframe, чтобы страница не уходила со своего URL -->
-                                        <iframe name="tg_iframe" style="display:none"></iframe>
+                            
+                    <iframe name="tg_iframe" style="display:none"></iframe>
+                        <form action="https://script.google.com/macros/s/AKfycby7XbHOs_Dmeirv1YB7dxcSxxpSvTwD7ckh86M2VkxLGAsu4okgJ_p9dYbn2XU3IF4_Xw/exec" method="POST" target="tg_iframe" accept-charset="UTF-8" id="contact">
+                            <input name="name"    required minlength="2"  placeholder="Ваше ім'я">
+                            <input name="email"   required type="email"   placeholder="you@example.com">
+                            <textarea name="message" required minlength="5" placeholder="Коротко опишіть задачу"></textarea>
+                            <input name="website" style="display:none">
+                            <button>Надіслати</button>
+                        </form>
 
-                                        <!-- ФОРМА КОНТАКТІВ — ВСТАВЬ СВОЙ SCRIPT_URL НИЖЕ -->
-                                        <form action="https://script.google.com/macros/s/AKfycby7XbHOs_Dmeirv1YB7dxcSxxpSvTwD7ckh86M2VkxLGAsu4okgJ_p9dYbn2XU3IF4_Xw/exec" method="POST" target="tg_iframe" accept-charset="UTF-8" id="contact-form">
-                                        <label>Ваше ім'я
-                                            <input type="text" name="name" placeholder="Ваше ім'я" required minlength="2">
-                                        </label>
+<p id="result"></p>
+<script>
+  const form = document.getElementById('contact');
+  const out  = document.getElementById('result');
+  window.frames.tg_iframe.addEventListener('load', ()=>{ out.textContent='Дякуємо!'; form.reset(); }, {once:true});
+  form.addEventListener('submit', ()=>{ out.textContent='Відправляємо...'; });
+</script>
 
-                                        <label>Email
-                                            <input type="email" name="email" placeholder="you@example.com" required>
-                                        </label>
-
-                                        <label>Ваше повідомлення
-                                            <textarea name="message" placeholder="Коротко опишіть задачу" required minlength="5"></textarea>
-                                        </label>
-
-                                        <!-- антиспам «мед» — має бути порожнім -->
-                                        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
-
-                                        <button type="submit" id="contact-submit">Надіслати повідомлення</button>
-                                        </form>
-
-                                        <p id="contact-result" role="status" aria-live="polite"></p>
-
-                                        <script>
-                                        // Показываем статус и чистим форму после ответа от Apps Script
-                                        const form = document.getElementById('contact-form');
-                                        const out  = document.getElementById('contact-result');
-                                        const iframeWin = window.frames.tg_iframe;
-
-                                        form.addEventListener('submit', () => {
-                                            out.textContent = 'Відправляємо...';
-                                            // Когда iframe загрузится (значит ответ пришёл) — показываем «спасибо»
-                                            iframeWin.addEventListener('load', () => {
-                                            out.textContent = 'Дякуємо! Ми отримали ваше повідомлення.';
-                                            form.reset();
-                                            }, { once: true });
-                                        });
-                                        </script>
 
                 </div>
 
