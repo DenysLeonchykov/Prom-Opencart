@@ -540,13 +540,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <button>Надіслати</button>
                         </form>
 
-<p id="result"></p>
-<script>
-  const form = document.getElementById('contact');
-  const out  = document.getElementById('result');
-  window.frames.tg_iframe.addEventListener('load', ()=>{ out.textContent='Дякуємо!'; form.reset(); }, {once:true});
-  form.addEventListener('submit', ()=>{ out.textContent='Відправляємо...'; });
-</script>
+                        <p id="result"></p>
+                        <script>
+                            const form = document.getElementById('contact');
+                            const out  = document.getElementById('result');
+                            window.frames.tg_iframe.addEventListener('load', ()=>{ out.textContent='Дякуємо!'; form.reset(); }, {once:true});
+                            form.addEventListener('submit', ()=>{ out.textContent='Відправляємо...'; });
+                        </script>
 
 
                 </div>
