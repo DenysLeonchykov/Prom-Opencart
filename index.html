@@ -531,22 +531,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <h3>Надішліть нам повідомлення</h3>
                     </div>
                             
-                    <iframe name="tg_iframe" style="display:none"></iframe>
-                        <form action="https://script.google.com/macros/s/AKfycby7XbHOs_Dmeirv1YB7dxcSxxpSvTwD7ckh86M2VkxLGAsu4okgJ_p9dYbn2XU3IF4_Xw/exec" method="POST" target="tg_iframe" accept-charset="UTF-8" id="contact">
-                            <input name="name"    required minlength="2"  placeholder="Ваше ім'я">
-                            <input name="email"   required type="email"   placeholder="you@example.com">
-                            <textarea name="message" required minlength="5" placeholder="Коротко опишіть задачу"></textarea>
-                            <input name="website" style="display:none">
-                            <button>Надіслати</button>
+                   <!-- невидимый iframe: не display:none, чтобы событие load было стабильным -->
+                        <iframe name="tg_iframe" id="tg_iframe"style="width:0;height:0;border:0;visibility:hidden"></iframe>
+
+                        <form action="https://script.google.com/macros/s/AKfycby7XbHOs_Dmeirv1YB7dxcSxxpSvTwD7ckh86M2VkxLGAsu4okgJ_p9dYbn2XU3IF4_Xw/exec"method="POST" target="tg_iframe" accept-charset="UTF-8" id="contact">
+                                <input name="name"    required minlength="2"  placeholder="Ваше ім'я">
+                                <input name="email"   required type="email"   placeholder="you@example.com">
+                                <textarea name="message" required minlength="5" placeholder="Коротко опишіть задачу"></textarea>
+                                <input name="website" style="display:none"> <!-- honeypot -->
+                                <button>Надіслати</button>
                         </form>
 
                         <p id="result"></p>
+
                         <script>
-                            const form = document.getElementById('contact');
-                            const out  = document.getElementById('result');
-                            window.frames.tg_iframe.addEventListener('load', ()=>{ out.textContent='Дякуємо!'; form.reset(); }, {once:true});
-                            form.addEventListener('submit', ()=>{ out.textContent='Відправляємо...'; });
+                            const form   = document.getElementById('contact');
+                            const out    = document.getElementById('result');
+                            const iframe = document.getElementById('tg_iframe');
+
+                            let pending = false;
+
+                            form.addEventListener('submit', () => {
+                                pending = true;
+                                out.textContent = 'Відправляємо...';
+                                // никаких preventDefault — форма должна реально отправиться в iframe
+                            });
+
+                            // Сработает, когда Apps Script ответит и iframe «загрузится»
+                            iframe.addEventListener('load', () => {
+                                if (!pending) return;          // игнорируем начальную загрузку about:blank
+                                pending = false;
+                                out.textContent = 'Дякуємо! Ми отримали ваше повідомлення.';
+                                form.reset();
+                            });
                         </script>
+
 
 
                 </div>
