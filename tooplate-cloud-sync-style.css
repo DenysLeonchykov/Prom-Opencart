@@ -1426,3 +1426,84 @@ https://www.tooplate.com/view/2142-cloud-sync
   opacity: 1;
 }
 
+
+/* === CONTACT: все 3 поля одинаковые тёмные + кнопка по центру === */
+
+/* 1) Оформляем ВСЕ input'ы (кроме honeypot) и textarea одинаково */
+#contact input:not([name="website"]),
+#contact textarea{
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  max-width: 480px;                 /* при желании 440–520 */
+  margin: 0 auto 12px;              /* центрируем под заголовком */
+  padding: 12px 14px;
+  border-radius: 12px !important;
+  border: 1px solid rgba(148,163,184,.20) !important;
+  background-color: #0b1220 !important; /* тёмные как у соседнего блока */
+  color: #e5e7eb !important;
+  outline: none;
+}
+
+/* 2) Единый вид плейсхолдера */
+#contact input::placeholder,
+#contact textarea::placeholder{
+  color: rgba(226,232,240,.55);
+}
+
+/* 3) Фокус — аккуратная подсветка и ещё чуть темнее фон */
+#contact input:not([name="website"]):focus,
+#contact textarea:focus{
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79,70,229,.25);
+  background-color: #0a1020 !important;
+}
+
+/* 4) Победим автозаполнение браузера (чтобы не выбеливало первое поле) */
+#contact input:-webkit-autofill,
+#contact input:-webkit-autofill:hover,
+#contact input:-webkit-autofill:focus,
+#contact textarea:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0px 1000px #0b1220 inset !important;
+  -webkit-text-fill-color: #e5e7eb !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* 5) Кнопка — КОРОТКАЯ и ПО ЦЕНТРУ, не растягивается */
+#contact{ text-align: center; }             /* чтобы центрировать inline-block */
+#contact button{
+  display: inline-block;                    /* не inline-flex, чтобы margin работал предсказуемо */
+  width: auto !important;                   /* точно не 100% */
+  min-width: 100px;
+  margin: 30px 20px 20px 20px;                       /* по центру */
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(180deg,#3b82f6,#4f46e5);
+  box-shadow: 0 10px 22px rgba(59,130,246,.35);
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .2s ease;
+}
+#contact button:hover{ transform: translateY(-1px); }
+#contact button:active{ transform: translateY(0); }
+
+/* 6) Статус под формой — той же ширины и по центру */
+#result{
+  width: 100%;
+  max-width: 480px;
+  margin: 8px auto 0;
+  text-align: center;
+  color: #94a3b8;
+  min-height: 1.4em;
+}
+
+/* 7) Honeypot прячем */
+#contact input[name="website"]{ display:none !important; }
+
+
+
+
